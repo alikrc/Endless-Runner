@@ -9,25 +9,24 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     AudioSource playerAudio;
     public float jumpForce = 10;
-    public float gravityModifier = 1;
     public bool gameOver;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
     public AudioClip jumpSound;
     public AudioClip crashSound;
 
-    void Start()
+    void Awake()
     {
-        Physics.gravity *= gravityModifier;
         playerRb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
+        gameOver = false;
+        isPlayerOnGround = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isPlayerOnGround && !gameOver)
+        if ((Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).tapCount > 0)) && isPlayerOnGround && !gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isPlayerOnGround = false;

@@ -8,7 +8,7 @@ public class MoveLeft : MonoBehaviour
     private PlayerController playerController;
     private float leftBound = -15;
 
-    void Start()
+    void Awake()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }

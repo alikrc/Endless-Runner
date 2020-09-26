@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject obstaclePrefab;
     private Vector3 spawnPos = new Vector3(25, 0, 0);
     private PlayerController playerController;
-    void Start()
+    void Awake()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         InvokeRepeating(nameof(SpawnObstacle), 1, 2);
